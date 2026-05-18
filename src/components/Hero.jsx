@@ -11,7 +11,7 @@ const HeroSection = async () => {
     const data = allData.slice(0, 3);
 
     console.log(data);
-    
+
     return (
         <div className="max-w-9/12 mx-auto mt-19">
             <div className="lg:flex justify-between items-center">
@@ -30,11 +30,13 @@ const HeroSection = async () => {
 
             {/* Doctors Card section */}
 
-            {
-                data.map(d => (
-                    <DoctorsCard key={d.id} data={d}/>
-                ))
-            }
+            <div className="grid grid-cols-1 lg:grid-cols-3 mt-30">
+                {
+                    data.map(d => (
+                        <DoctorsCard key={d.id} data={d} />
+                    ))
+                }
+            </div>
         </div>
     );
 };
