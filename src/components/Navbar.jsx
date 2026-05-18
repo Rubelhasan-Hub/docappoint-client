@@ -14,10 +14,12 @@ const Navbar = () => {
     return (
         <div className="shadow-lg sticky top-0 z-50 bg-white">
             <nav className="flex justify-between  max-w-11/12 mx-auto items-center p-5">
-                <div className="flex items-center">
-                    <Image className="w-14" src="/assets/54-545682_doctor-logo-doctor-logo-png.png" alt="DocAppointment Logo" width={50} height={50} loading="eager"></Image>
-                    <h2 className="text-2xl lg:text-3xl font-semibold"><span className="text-green-600">Doc</span>Appointment</h2>
-                </div>
+                <Link href='/'>
+                    <div className="flex items-center">
+                        <Image className="w-14" src="/assets/54-545682_doctor-logo-doctor-logo-png.png" alt="DocAppointment Logo" width={50} height={50} loading="eager"></Image>
+                        <h2 className="text-2xl lg:text-3xl font-semibold"><span className="text-green-600">Doc</span>Appointment</h2>
+                    </div>
+                </Link>
                 <div>
                     <ul className="hidden lg:flex gap-7 text-lg ">
                         <li><Link href="/" className={pathName === "/" ? "border-b-2 border-green-600" : "border-0"}>Home</Link></li>
@@ -45,8 +47,8 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="flex gap-1">
-                        <Button variant="outline" >Login</Button>
-                        <Button className="bg-green-600">Register</Button>
+                        <Link href="/login"><Button variant="outline" className="hover:bg-blue-100">Login</Button></Link>
+                        <Link href="/register"><Button className="bg-green-600 hover:bg-green-700">Register</Button></Link>
                     </div>
                 </div>
             </div>)}
