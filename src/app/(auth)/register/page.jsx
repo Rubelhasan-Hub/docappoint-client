@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {
     Button,
     Description,
@@ -14,8 +15,26 @@ import Image from "next/image";
 import Link from "next/link";
 
 const RegisterPage = () => {
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        // Change formEntries to fromEntries
+        const user = Object.fromEntries(formData);
+
+        const { data, error } = await authClient.signUp.email({
+            email: user.email,
+            password: user.password,
+            name: user.name,
+            Image: user.image,
+            callbackURL: "/dashboard" // A URL to redirect to after the user verifies their email (optional)
+        })
+
+        console.log(data, error);
+
+    }
     return (
-        <Form className="w-full max-w-100 border-2 border-gray-500/40 rounded-2xl mx-auto m-20 p-7 shadow-2xl shadow-blue-300" >
+        <Form className="w-full max-w-100 border-2 border-gray-500/40 rounded-2xl mx-auto m-20 p-7 shadow-2xl shadow-blue-300" onSubmit={onSubmit}>
             <Fieldset>
                 <div className="flex items-center">
                     <Image className="w-14" src="/assets/54-545682_doctor-logo-doctor-logo-png.png" alt="DocAppointment Logo" width={50} height={50} loading="eager"></Image>
@@ -45,7 +64,7 @@ const RegisterPage = () => {
 
                     <TextField>
                         <Label>Photo Url</Label>
-                        <Input placeholder="Enter Photo Url" />
+                        <Input placeholder="Enter Photo Url" name="image" />
                         <FieldError />
                     </TextField>
 
@@ -74,9 +93,7 @@ const RegisterPage = () => {
                     </TextField>
                 </FieldGroup>
                 <Fieldset.Actions>
-                    <Button className="w-full" type="submit" variant="primary">
-                        Registe
-                    </Button>
+                    <Button className="w-full" type="submit" variant="primary">Register</Button>
                 </Fieldset.Actions>
                 <div className="divider">OR</div>
                 <button className="btn bg-white text-black border-[#e5e5e5] w-full">

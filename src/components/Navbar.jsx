@@ -22,9 +22,9 @@ const Navbar = () => {
                 </Link>
                 <div>
                     <ul className="hidden lg:flex gap-7 text-lg ">
-                        <li><Link href="/" className={pathName === "/" ? "border-b-2 border-green-600" : "border-0"}>Home</Link></li>
-                        <li><Link href="/all-appointment" className={pathName === "/all-appointment" ? "border-b-2 border-green-600" : "border-0"}>All Appointments</Link></li>
-                        <li><Link href="/dashboard" className={pathName === "/dashboard" ? "border-b-2 border-green-600" : "border-0"}>Dashboard</Link></li>
+                        <li><Link href="/" className={pathName === "/" ? "border-b-4 border-green-600" : "border-0"}>Home</Link></li>
+                        <li><Link href="/all-appointment" className={pathName === "/all-appointment" ? "border-b-4 border-green-600" : "border-0"}>All Appointments</Link></li>
+                        <li><Link href="/dashboard" className={pathName === "/dashboard" ? "border-b-4 border-green-600" : "border-0"}>Dashboard</Link></li>
                     </ul>
                 </div>
                 <div className="hidden gap-3 lg:flex ">

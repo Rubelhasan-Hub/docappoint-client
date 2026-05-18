@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const DoctorsCard = ({ data }) => {
@@ -16,7 +17,9 @@ const DoctorsCard = ({ data }) => {
                         <h2 className='text-green-500 font-semibold text-xl'>Appointment Fee</h2>
                         <p className='font-semibold text-xl'>৳ {data.fee}</p>
                     </div>
-                    <button className="btn btn-accent">View Details</button>
+                    <Link href={`/all-appointment/${data._id}`}>
+                        <button className="btn btn-accent text-white">View Details</button>
+                    </Link>
                 </div>
             </div>
         </div>

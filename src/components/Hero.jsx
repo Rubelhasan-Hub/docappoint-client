@@ -11,7 +11,7 @@ const HeroSection = async () => {
     const data = allData.slice(0, 3);
 
     return (
-        <div className="max-w-9/12 mx-auto mt-19">
+        <div className="max-w-9/12 mx-auto mt-5">
             <div className="lg:flex justify-between items-center">
                 <div className="space-y-7">
                     <span className="bg-green-100 p-2 px-4 rounded-2xl font-semibold text-green-400 ">Your wealth,Our Priority</span>

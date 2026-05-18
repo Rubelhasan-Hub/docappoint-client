@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {
     Button,
     Description,
@@ -14,8 +15,25 @@ import Image from "next/image";
 import Link from "next/link";
 
 const LoginPage = () => {
+
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        // Change formEntries to fromEntries
+        const user = Object.fromEntries(formData);
+
+        const { data, error } = await authClient.signIn.email({
+            email: user.email,
+            password: user.password,
+            callbackURL: "/",
+        })
+
+        console.log(data, error);
+        
+    }
     return (
-        <Form className="w-full max-w-100 border-2 border-gray-500/40 rounded-2xl mx-auto m-20 p-7 shadow-2xl shadow-blue-300" >
+        <Form className="w-full max-w-100 border-2 border-gray-500/40 rounded-2xl mx-auto m-20 p-7 shadow-2xl shadow-blue-300" onSubmit={onSubmit}>
             <Fieldset>
                 <div className="flex items-center">
                     <Image className="w-14" src="/assets/54-545682_doctor-logo-doctor-logo-png.png" alt="DocAppointment Logo" width={50} height={50} loading="eager"></Image>
