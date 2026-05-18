@@ -10,8 +10,6 @@ const HeroSection = async () => {
     const allData = await res.json()
     const data = allData.slice(0, 3);
 
-    console.log(data);
-
     return (
         <div className="max-w-9/12 mx-auto mt-19">
             <div className="lg:flex justify-between items-center">
