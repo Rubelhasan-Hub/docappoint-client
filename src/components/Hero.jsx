@@ -2,8 +2,16 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import { BiRightArrow } from "react-icons/bi";
 import { SlCalender } from "react-icons/sl";
+import DoctorsCard from "./DoctorsCard";
 
-const HeroSection = () => {
+
+const HeroSection = async () => {
+    const res = await fetch('http://localhost:5000/doctors')
+    const allData = await res.json()
+    const data = allData.slice(0, 3);
+
+    console.log(data);
+    
     return (
         <div className="max-w-9/12 mx-auto mt-19">
             <div className="lg:flex justify-between items-center">
@@ -19,6 +27,14 @@ const HeroSection = () => {
                 </div>
                 <div><Image src='/assets/doctor-with-his-arms-crossed-white-background.jpg' alt="Hero Image" width={1000} height={1000}></Image></div>
             </div>
+
+            {/* Doctors Card section */}
+
+            {
+                data.map(d => (
+                    <DoctorsCard key={d.id} data={d}/>
+                ))
+            }
         </div>
     );
 };
