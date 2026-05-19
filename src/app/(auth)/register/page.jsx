@@ -13,6 +13,7 @@ import {
 } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const RegisterPage = () => {
 
@@ -26,11 +27,11 @@ const RegisterPage = () => {
             email: user.email,
             password: user.password,
             name: user.name,
-            Image: user.image,
-            callbackURL: "/dashboard" // A URL to redirect to after the user verifies their email (optional)
+            image: user.image,// A URL to redirect to after the user verifies their email (optional)
         })
-
-        console.log(data, error);
+        if(data){
+            redirect('/login')
+        }
 
     }
     return (
@@ -62,9 +63,9 @@ const RegisterPage = () => {
                         <FieldError />
                     </TextField>
 
-                    <TextField>
+                    <TextField name="image" type="url">
                         <Label>Photo Url</Label>
-                        <Input placeholder="Enter Photo Url" name="image" />
+                        <Input placeholder="Enter Photo Url"/>
                         <FieldError />
                     </TextField>
 

@@ -1,15 +1,26 @@
 "use client"
+import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
+import { LuLogOut } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathName = usePathname()
+
+    const {
+        data: session,
+    } = authClient.useSession()
+    const user = session?.user
+    
+    const handleSignOut = async () =>{
+        await authClient.signOut();
+    }
 
     return (
         <div className="shadow-lg sticky top-0 z-50 bg-white">
@@ -27,10 +38,17 @@ const Navbar = () => {
                         <li><Link href="/dashboard" className={pathName === "/dashboard" ? "border-b-4 border-green-600" : "border-0"}>Dashboard</Link></li>
                     </ul>
                 </div>
-                <div className="hidden gap-3 lg:flex ">
-                    <Link href="/login"><Button variant="outline" className="hover:bg-blue-100">Login</Button></Link>
-                    <Link href="/register"><Button className="bg-green-600 hover:bg-green-700">Register</Button></Link>
-                </div>
+                {
+                    !user && <div className="hidden gap-3 lg:flex "> <Link href="/login"><Button variant="outline" className="hover:bg-blue-100">Login</Button></Link>
+                        <Link href="/register"><Button className="bg-green-600 hover:bg-green-700">Register</Button></Link>
+                    </div>
+                }
+                {
+                    user && <div className="flex gap-2 items-center">
+                        <Image src={user?.image} alt={user?.name} width={50} height={90} className="rounded-[50%] w-10 h-10"></Image>
+                        <Link href="/"><Button variant="outline" className="btn btn-error text-white rounded-2xl" onClick={handleSignOut}>Logout<LuLogOut/></Button></Link>
+                    </div>
+                }
 
                 <button onClick={() => setIsMobileMenuOpen((currentValue) => !currentValue)} className="md:hidden p-2 text-foreground">
                     {isMobileMenuOpen ? <RxCross2 size={24} /> : <FiMenu size={24} />}

@@ -13,6 +13,7 @@ import {
 } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
 
@@ -29,7 +30,9 @@ const LoginPage = () => {
             callbackURL: "/",
         })
 
-        console.log(data, error);
+        if(!data){
+            toast.error(`${error.message}`)
+        }
         
     }
     return (
