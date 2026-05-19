@@ -1,3 +1,4 @@
+import BookingModal from '@/components/BookingModal';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -23,7 +24,7 @@ const DoctorDetailsPage = async ({ params }) => {
                     <div className='grid grid-cols-2 gap-5'>
                         <div className="card bg-base-100 shadow-md border-2 border-gray-600/40 hover:translate-y-1 transition duration-300">
                             <div className="flex items-center gap-3">
-                                <IoTimeOutline className='text-4xl bg-green-200 p-1 rounded-full'/>
+                                <IoTimeOutline className='text-4xl bg-green-200 p-1 rounded-full' />
                                 <div>
                                     <h2 className="card-title">Experience</h2>
                                     <p>{data.experience}</p>
@@ -32,7 +33,7 @@ const DoctorDetailsPage = async ({ params }) => {
                         </div>
                         <div className="card bg-base-100 shadow-sm border-2 border-gray-600/40 hover:translate-y-1 transition duration-300">
                             <div className="flex items-center gap-3">
-                                <MdAttachMoney className='text-4xl bg-green-200 p-1 rounded-full'/>
+                                <MdAttachMoney className='text-4xl bg-green-200 p-1 rounded-full' />
                                 <div>
                                     <h2 className="card-title">Appointment Fee</h2>
                                     <p className='font-semibold'>৳ {data.fee}</p>
@@ -41,7 +42,7 @@ const DoctorDetailsPage = async ({ params }) => {
                         </div>
                         <div className="card bg-base-100 shadow-sm border-2 border-gray-600/40 hover:translate-y-1 transition duration-300">
                             <div className="flex items-center gap-3">
-                                <IoLocationSharp className='text-4xl bg-green-200 p-1 rounded-full'/>
+                                <IoLocationSharp className='text-4xl bg-green-200 p-1 rounded-full' />
                                 <div>
                                     <h2 className="card-title">location</h2>
                                     <p>{data.location}</p>
@@ -50,7 +51,7 @@ const DoctorDetailsPage = async ({ params }) => {
                         </div>
                         <div className="card bg-base-100 shadow-sm border-2 border-gray-600/40 hover:translate-y-1 transition duration-300">
                             <div className="flex items-center gap-3">
-                                <BsHospital className='text-4xl bg-green-200 p-1 rounded-full'/>
+                                <BsHospital className='text-4xl bg-green-200 p-1 rounded-full' />
                                 <div>
                                     <h2 className="card-title">Hospital</h2>
                                     <p>{data.hospital}</p>
@@ -61,9 +62,7 @@ const DoctorDetailsPage = async ({ params }) => {
 
                     </div>
                     <div>
-                        <Link href={`/all-appointment/${data._id}`}>
-                            <button className="btn btn-accent text-white">Book Appointment</button>
-                        </Link>
+                        <BookingModal data={data}/>
                     </div>
                 </div>
             </div>

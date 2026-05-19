@@ -13,9 +13,7 @@ const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathName = usePathname()
 
-    const {
-        data: session,
-    } = authClient.useSession()
+    const { data: session, } = authClient.useSession()
     const user = session?.user
 
     const handleSignOut = async () => {
@@ -46,7 +44,7 @@ const Navbar = () => {
                 {
                     user && <div className="flex gap-2 items-center">
                         <Avatar>
-                            <Avatar.Image referrerPolicy="no-referrer" alt={user?.name} src={user?.image}/>
+                            <Avatar.Image referrerPolicy="no-referrer" alt={user?.name} src={user?.image} />
                             <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
                         </Avatar>
                         <Link href="/"><Button variant="outline" className="btn btn-error text-white rounded-2xl" onClick={handleSignOut}>Logout<LuLogOut /></Button></Link>
