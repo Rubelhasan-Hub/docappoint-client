@@ -1,6 +1,6 @@
 "use client"
 import { authClient } from "@/lib/auth-client";
-import { Button } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,8 +17,8 @@ const Navbar = () => {
         data: session,
     } = authClient.useSession()
     const user = session?.user
-    
-    const handleSignOut = async () =>{
+
+    const handleSignOut = async () => {
         await authClient.signOut();
     }
 
@@ -45,8 +45,11 @@ const Navbar = () => {
                 }
                 {
                     user && <div className="flex gap-2 items-center">
-                        <Image src={user?.image} alt={user?.name} width={50} height={90} className="rounded-[50%] w-10 h-10"></Image>
-                        <Link href="/"><Button variant="outline" className="btn btn-error text-white rounded-2xl" onClick={handleSignOut}>Logout<LuLogOut/></Button></Link>
+                        <Avatar>
+                            <Avatar.Image referrerPolicy="no-referrer" alt={user?.name} src={user?.image}/>
+                            <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                        </Avatar>
+                        <Link href="/"><Button variant="outline" className="btn btn-error text-white rounded-2xl" onClick={handleSignOut}>Logout<LuLogOut /></Button></Link>
                     </div>
                 }
 
