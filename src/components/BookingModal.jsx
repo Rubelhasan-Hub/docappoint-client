@@ -5,12 +5,47 @@ import { Label, TimeField } from "@heroui/react";
 import { ListBox, Select } from "@heroui/react";
 import { Calendar, DateField, DatePicker } from "@heroui/react";
 import { Button, Input, Modal, Surface, TextField } from "@heroui/react";
+import { json } from "better-auth";
 import { LuCalendarClock } from "react-icons/lu";
+import { toast } from "react-toastify";
 
 
 const BookingModal = ({ data }) => {
     const { data: session } = authClient.useSession()
     const user = session?.user
+
+
+    const handleBooking = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const formValues = Object.fromEntries(formData.entries());
+
+        const bookingData = {
+            userId: user?.id,
+            DoctorName: formValues.DoctorName,
+            PatientName: formValues.PatientName,
+            email: formValues.email,
+            gender: formValues.gender,
+            phone: formValues.phone,
+            date: formValues.date,
+            time: formValues.time,
+        }
+
+        console.log(bookingData);
+
+
+        const res = await fetch('http://localhost:5000/booking', {
+            method: "POST",
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify(bookingData)
+        })
+
+        const data = await res.json()
+        toast.success('Appointment booked successfully!')
+
+    }
 
 
     return (
@@ -30,12 +65,12 @@ const BookingModal = ({ data }) => {
                             </Modal.Header>
                             <Modal.Body className="p-6">
                                 <Surface variant="default">
-                                    <form className="flex flex-col gap-4">
-                                        <TextField className="w-full" name="name" type="text" value={data?.name}>
+                                    <form className="flex flex-col gap-4" onSubmit={handleBooking}>
+                                        <TextField className="w-full" name="DoctorName" type="text" value={data?.name}>
                                             <Label>Doctor Name</Label>
                                             <Input />
                                         </TextField>
-                                        <TextField className="w-full" name="name" type="text" defaultValue={user?.name}>
+                                        <TextField className="w-full" name="PatientName" type="text" defaultValue={user?.name}>
                                             <Label>Patient Name</Label>
                                             <Input placeholder="Enter your name" />
                                         </TextField>
@@ -53,11 +88,11 @@ const BookingModal = ({ data }) => {
                                                     </Select.Trigger>
                                                     <Select.Popover>
                                                         <ListBox>
-                                                            <ListBox.Item id="cat" textValue="Cat">Male<ListBox.ItemIndicator />
+                                                            <ListBox.Item id="Male" textValue="Male">Male<ListBox.ItemIndicator />
                                                             </ListBox.Item>
-                                                            <ListBox.Item id="dog" textValue="Dog">Female<ListBox.ItemIndicator />
+                                                            <ListBox.Item id="Female" textValue="Female">Female<ListBox.ItemIndicator />
                                                             </ListBox.Item>
-                                                            <ListBox.Item id="bird" textValue="Bird">Other<ListBox.ItemIndicator />
+                                                            <ListBox.Item id="Other" textValue="Other">Other<ListBox.ItemIndicator />
                                                             </ListBox.Item>
                                                         </ListBox>
                                                     </Select.Popover>
@@ -126,7 +161,7 @@ const BookingModal = ({ data }) => {
                                             <Button slot="close" variant="secondary">
                                                 Cancel
                                             </Button>
-                                            <Button slot="close">Book Appointment</Button>
+                                            <Button slot="close" type="submit">Book Appointment</Button>
                                         </Modal.Footer>
                                     </form>
                                 </Surface>
