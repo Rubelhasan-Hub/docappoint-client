@@ -23,7 +23,7 @@ const EditBooking = ({ data }) => {
         }
 
 
-        const res = await fetch(`http://localhost:5000/booking/${data.userId}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${data.userId}`, {
             method: "PATCH",
             headers: {
                 'content-type': "application/json"

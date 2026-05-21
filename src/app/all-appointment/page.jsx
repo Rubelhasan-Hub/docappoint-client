@@ -16,7 +16,7 @@ const AllAppointmentPage = async () => {
         headers: await headers()
     })
 
-    const res = await fetch('http://localhost:5000/doctors', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`, {
         headers: {
             authorization: `Bearer ${token}`
         }

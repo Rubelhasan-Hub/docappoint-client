@@ -48,7 +48,7 @@ const Navbar = () => {
                     </div>
                 }
                 {
-                    user && <div className="flex gap-2 items-center">
+                    user && <div className="hidden  lg:flex gap-2 items-center">
                         <Avatar>
                             <Avatar.Image referrerPolicy="no-referrer" alt={user?.name} src={user?.image} />
                             <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
@@ -67,14 +67,26 @@ const Navbar = () => {
                     <div>
                         <ul className="space-y-4 text-lg ">
                             <li><Link href="/">Home</Link></li>
-                            <li><Link href="/">All Appointments</Link></li>
-                            <li><Link href="/">Dashboard</Link></li>
+                            <li><Link href="/all-appointment">All Appointments</Link></li>
+                            <li><Link href="/dashboard">Dashboard</Link></li>
                         </ul>
                     </div>
-                    <div className="flex gap-1">
-                        <Link href="/login"><Button variant="outline" className="hover:bg-blue-100">Login</Button></Link>
-                        <Link href="/register"><Button className="bg-green-600 hover:bg-green-700">Register</Button></Link>
-                    </div>
+                    {
+                        user && <div className="flex gap-2 items-center">
+                            <Avatar>
+                                <Avatar.Image referrerPolicy="no-referrer" alt={user?.name} src={user?.image} />
+                                <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                            </Avatar>
+                            <Button variant="outline" className="btn btn-error text-white rounded-2xl" onClick={handleLogout}>Logout<LuLogOut /></Button>
+                        </div>
+                    }
+                    {
+                        !user && <div className="flex gap-1">
+                            <Link href="/login"><Button variant="outline" className="hover:bg-blue-100">Login</Button></Link>
+                            <Link href="/register"><Button className="bg-green-600 hover:bg-green-700">Register</Button></Link>
+                        </div>
+                    }
+
                 </div>
             </div>)}
         </div>

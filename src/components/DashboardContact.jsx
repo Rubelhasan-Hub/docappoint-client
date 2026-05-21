@@ -19,7 +19,7 @@ const DashboardContact = ({ data }) => {
 
 
     const handleDelete = async () => {
-        const res = await fetch(`http://localhost:5000/booking/${user.id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user.id}`, {
             method: "DELETE",
             headers: {
                 'content-type': "application/json"
@@ -53,7 +53,7 @@ const DashboardContact = ({ data }) => {
 
             {
                 activeTab === "booking" && (
-                    <div className='space-y-4 w-[40%] shadow-2xl border-2 border-gray-200 rounded-2xl shadow-green-100'>
+                    <div className='space-y-4 md:w-[40%] shadow-2xl border-2 border-gray-200 rounded-2xl shadow-green-100'>
                         {
                             data.length === 0 ? (
                                 <div className="text-center py-10">
@@ -107,7 +107,7 @@ const DashboardContact = ({ data }) => {
 
             {
                 activeTab === "profile" && (
-                    <div className='space-y-4 m-23 w-[40%] shadow-2xl border-2 border-gray-200 rounded-2xl shadow-green-100'>
+                    <div className='space-y-4 lg:m-23 lg:w-[40%] shadow-2xl border-2 border-gray-200 rounded-2xl shadow-green-100'>
                         <div className='p-5 space-y-3'>
                             <Avatar className="w-20 h-20 rounded-full">
                                 <Avatar.Image referrerPolicy="no-referrer" alt={user?.name} src={user.image} />
@@ -116,7 +116,7 @@ const DashboardContact = ({ data }) => {
                             <h1 className='text-3xl font-bold text-blue-500'>
                                 {user.name}
                             </h1>
-                            <div className="flex text-2xl items-center font-semibold gap-1">
+                            <div className="flex text-xl lg:text-2xl items-center font-semibold gap-1">
                                 <BiUser />
                                 <p>Email: {user.email}</p>
                             </div>
