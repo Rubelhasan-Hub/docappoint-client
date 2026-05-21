@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BiBookBookmark, BiRightArrowAlt, BiUser } from "react-icons/bi";
 import { GrEmergency } from "react-icons/gr";
 import { MdOnlinePrediction } from "react-icons/md";
+import WhyChooseUs from "./WhyChooseUs";
 
 
 const MoreSection = () => {
@@ -44,10 +45,10 @@ const MoreSection = () => {
                         </Card.Header>
                         <Link href="/" className="text-green-500 flex items-center gap-2"><span className="border-b-2 border-green-500">Read More</span> <BiRightArrowAlt /></Link>
                     </Card>
-
-
                 </div>
             </div>
+
+            <WhyChooseUs/>
         </div>
     );
 };

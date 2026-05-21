@@ -16,9 +16,15 @@ const Navbar = () => {
     const { data: session, } = authClient.useSession()
     const user = session?.user
 
-    const handleSignOut = async () => {
-        await authClient.signOut();
-    }
+    const handleLogout = async () => {
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    window.location.href = "/";
+                },
+            },
+        });
+    };
 
     return (
         <div className="shadow-lg sticky top-0 z-50 bg-white">
@@ -47,7 +53,7 @@ const Navbar = () => {
                             <Avatar.Image referrerPolicy="no-referrer" alt={user?.name} src={user?.image} />
                             <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
                         </Avatar>
-                        <Link href="/"><Button variant="outline" className="btn btn-error text-white rounded-2xl" onClick={handleSignOut}>Logout<LuLogOut /></Button></Link>
+                        <Button variant="outline" className="btn btn-error text-white rounded-2xl" onClick={handleLogout}>Logout<LuLogOut /></Button>
                     </div>
                 }
 

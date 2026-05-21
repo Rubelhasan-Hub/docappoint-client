@@ -6,9 +6,8 @@ import DoctorsCard from "./DoctorsCard";
 
 
 const HeroSection = async () => {
-    const res = await fetch('http://localhost:5000/doctors')
-    const allData = await res.json()
-    const data = allData.slice(0, 3);
+    const res = await fetch('http://localhost:5000/3doctors')
+    const data = await res.json()
 
     return (
         <div className="max-w-9/12 mx-auto mt-5">
@@ -28,7 +27,7 @@ const HeroSection = async () => {
 
             {/* Doctors Card section */}
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 mt-30">
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-3 mt-30">
                 {
                     data.map(d => (
                         <DoctorsCard key={d.id} data={d} />

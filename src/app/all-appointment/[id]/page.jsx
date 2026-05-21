@@ -6,6 +6,13 @@ import { BsHospital } from 'react-icons/bs';
 import { IoLocationSharp, IoTimeOutline } from 'react-icons/io5';
 import { MdAttachMoney } from 'react-icons/md';
 
+export async function generateMetadata({ params }) {
+    return {
+        title: `Doctor Details | DocAppointment`,
+        description: "View doctor profile, rating, experience, and appointment details.",
+    };
+}
+
 const DoctorDetailsPage = async ({ params }) => {
     const { id } = await params
     const res = await fetch(`http://localhost:5000/doctors/${id}`)
@@ -62,7 +69,7 @@ const DoctorDetailsPage = async ({ params }) => {
 
                     </div>
                     <div>
-                        <BookingModal data={data}/>
+                        <BookingModal data={data} />
                     </div>
                 </div>
             </div>

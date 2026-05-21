@@ -13,11 +13,12 @@ const Dashboard = async () => {
 
     const res = await fetch(`http://localhost:5000/booking/${session?.user.id}`)
     const data = await res.json()
+    
 
     return (
         <div className='max-w-10/12 p-10 mx-auto space-y-7'>
             <h1 className='text-4xl font-semibold'>DashBoard</h1>
-            
+
             <DashboardContact data={data} />
         </div>
     );

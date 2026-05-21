@@ -5,7 +5,6 @@ import { Label, TimeField } from "@heroui/react";
 import { ListBox, Select } from "@heroui/react";
 import { Calendar, DateField, DatePicker } from "@heroui/react";
 import { Button, Input, Modal, Surface, TextField } from "@heroui/react";
-import { json } from "better-auth";
 import { LuCalendarClock } from "react-icons/lu";
 import { toast } from "react-toastify";
 
