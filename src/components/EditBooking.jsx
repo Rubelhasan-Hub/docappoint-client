@@ -7,8 +7,10 @@ import { Calendar, DateField, DatePicker } from "@heroui/react";
 import { Button, Input, Modal, Surface, TextField } from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const EditBooking = ({ data }) => {
+    const Route = useRouter();
     const handleBooking = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -31,7 +33,7 @@ const EditBooking = ({ data }) => {
 
         // const data = await res.json()
         toast.success('Appointment Update successfully!')
-        window.location.reload();
+        Route.refresh();
 
     }
 

@@ -4,6 +4,7 @@ import { Label } from "@heroui/react";
 import { Button, Input, Modal, Surface, TextField } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { BiEdit } from "react-icons/bi";
+import { toast } from "react-toastify";
 
 const UpdateProfile = ({ data }) => {
     const route = useRouter();
@@ -18,7 +19,7 @@ const UpdateProfile = ({ data }) => {
             name: name,
             image: image,
         })
-
+        toast.success("Profile updated successfully!")
         route.refresh();
 
     }

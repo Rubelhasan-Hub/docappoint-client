@@ -8,6 +8,7 @@ import EditBooking from "./EditBooking";
 import { authClient } from "@/lib/auth-client";
 import UpdateProfile from "./UpdateProfile";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const DashboardContact = ({ data }) => {
     const Route = useRouter();
@@ -25,7 +26,9 @@ const DashboardContact = ({ data }) => {
             }
         })
 
-        Route.refresh();
+        toast.error("Appointment deleted successfully!")
+        Route.refresh()
+
     }
     return (
         <div className='space-y-7'>
