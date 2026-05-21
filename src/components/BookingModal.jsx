@@ -69,7 +69,7 @@ const BookingModal = ({ data }) => {
                                             <Label>Doctor Name</Label>
                                             <Input />
                                         </TextField>
-                                        <TextField className="w-full" name="PatientName" type="text" defaultValue={user?.name}>
+                                        <TextField isRequired className="w-full" name="PatientName" type="text" defaultValue={user?.name}>
                                             <Label>Patient Name</Label>
                                             <Input placeholder="Enter your name" />
                                         </TextField>
@@ -79,7 +79,7 @@ const BookingModal = ({ data }) => {
                                         </TextField>
                                         <div className="flex justify-between">
                                             <div className="w-40" name="gender">
-                                                <Select fullWidth placeholder="Select one" name="gender">
+                                                <Select fullWidth isRequired placeholder="Select one" name="gender">
                                                     <Label>Gender</Label>
                                                     <Select.Trigger>
                                                         <Select.Value />
@@ -99,7 +99,7 @@ const BookingModal = ({ data }) => {
                                             </div>
 
                                             <div>
-                                                <TextField className="w-full" name="phone" type="tel">
+                                                <TextField className="w-full" name="phone" type="tel" isRequired>
                                                     <Label>Phone</Label>
                                                     <Input placeholder="Enter your phone number" />
                                                 </TextField>
@@ -108,7 +108,7 @@ const BookingModal = ({ data }) => {
 
                                         <div className="flex justify-between">
                                             <div>
-                                                <DatePicker className="" name="date">
+                                                <DatePicker className="" name="date" isRequired>
                                                     <Label>Date</Label>
                                                     <DateField.Group fullWidth>
                                                         <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
@@ -145,7 +145,7 @@ const BookingModal = ({ data }) => {
                                             </div>
 
                                             <div>
-                                                <TimeField className="w-full" name="time">
+                                                <TimeField className="w-full" name="time" isRequired>
                                                     <Label>Time</Label>
                                                     <TimeField.Group>
                                                         <TimeField.Input>{(segment) => <TimeField.Segment segment={segment} />}</TimeField.Input>
