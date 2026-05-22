@@ -16,6 +16,16 @@ export const auth = betterAuth({
         client
     }),
     trustedOrigins: ["https://docappoint-client.vercel.app"],
+    advanced: {
+        crossSubdomainCookies: {
+            enabled: false,
+        },
+        defaultCookieAttributes: {
+            secure: true,
+            httpOnly: true,
+            sameSite: "none",
+        }
+    },
     emailAndPassword: {
         enabled: true,
         autoSignIn: false,
