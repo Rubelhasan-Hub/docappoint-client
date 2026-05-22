@@ -160,7 +160,7 @@ const BookingModal = ({ data }) => {
                                             <Button slot="close" variant="secondary">
                                                 Cancel
                                             </Button>
-                                            <Button slot="close" type="submit">Book Appointment</Button>
+                                            <Button type="submit">Book Appointment</Button>
                                         </Modal.Footer>
                                     </form>
                                 </Surface>

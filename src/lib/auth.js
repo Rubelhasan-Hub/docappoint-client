@@ -16,6 +16,7 @@ export const auth = betterAuth({
     trustedOrigins: ["https://docappoint-client.vercel.app"],
     emailAndPassword: {
         enabled: true,
+        autoSignIn: false,
     },
     socialProviders: {
         google: {
